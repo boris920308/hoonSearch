@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import hoon.example.hoonsearch.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(){
     private var _binding: FragmentHomeBinding? = null
@@ -31,9 +32,11 @@ class HomeFragment : Fragment(){
             viewModel.getSearchResult("book", "kotlin")
         }
 
-        viewModel.searchResult.observe(viewLifecycleOwner, Observer {
-            Log.d("hoon92", "resultList = ${it.toString()}")
-        })
+        lifecycleScope.launch {
+            viewModel.searchFlow.collect {
+                Log.d("hoon92", "searchResult = ${it.toString()}")
+            }
+        }
     }
 
 }
