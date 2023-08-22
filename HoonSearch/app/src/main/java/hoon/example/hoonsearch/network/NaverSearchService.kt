@@ -37,9 +37,9 @@ private val retrofit = Retrofit.Builder()
     .client(client)
     .build()
 
-interface NaverAPIService {
+interface NaverSearchService {
     @GET("v1/search/{type}.json")
-    suspend fun getSearch(
+    suspend fun runSearch(
         @Path("type") type: String,
         @Query("query") query: String,
         @Query("display") display: Int? = null,
@@ -47,8 +47,8 @@ interface NaverAPIService {
     ): NaverSearchResponse
 }
 
-object NaverAPI {
-    val naverApiService : NaverAPIService by lazy {
-        retrofit.create(NaverAPIService::class.java)
+object NaverSearchApi {
+    val naverSearchApi : NaverSearchService by lazy {
+        retrofit.create(NaverSearchService::class.java)
     }
 }

@@ -12,10 +12,10 @@ data class NaverSearchResponse(
     @SerializedName("display")
     val display: Int = 0,
     @SerializedName("items")
-    val items: List<NaverSearchResponseItem>
+    val items: List<NaverSearchResponseDetailItem>
 )
 
-data class NaverSearchResponseItem(
+data class NaverSearchResponseDetailItem(
     @SerializedName("title")
     val title: String = "",
     @SerializedName("link")
