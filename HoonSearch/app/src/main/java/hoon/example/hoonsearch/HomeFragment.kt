@@ -31,7 +31,7 @@ class HomeFragment : Fragment(){
             viewModel.getSearchResult("book", "kotlin")
         }
 
-        viewModel.resultList.observe(viewLifecycleOwner, Observer {
+        viewModel.searchResult.observe(viewLifecycleOwner, Observer {
             Log.d("hoon92", "resultList = ${it.toString()}")
         })
     }

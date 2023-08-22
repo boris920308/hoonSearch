@@ -5,7 +5,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import hoon.example.hoonsearch.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -40,12 +39,12 @@ private val retrofit = Retrofit.Builder()
 
 interface NaverAPIService {
     @GET("v1/search/{type}.json")
-    fun getSearch(
+    suspend fun getSearch(
         @Path("type") type: String,
         @Query("query") query: String,
         @Query("display") display: Int? = null,
         @Query("start") start: Int? = null
-    ): Call<NaverSearchResponse>
+    ): NaverSearchResponse
 }
 
 object NaverAPI {
