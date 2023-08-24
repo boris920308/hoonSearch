@@ -3,13 +3,18 @@ package hoon.example.hoonsearch
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import hoon.example.hoonsearch.network.NaverSearchApi
-import hoon.example.hoonsearch.network.NaverSearchResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
+import hoon.example.hoonsearch.data.repository.NaverSearchRepository
+import hoon.example.hoonsearch.data.model.NaverSearchResponse
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val naverSearchRepository: NaverSearchRepository,
+) : ViewModel() {
 
     private val _searchFlow = MutableSharedFlow<NaverSearchResponse>()
     val searchFlow = _searchFlow.asSharedFlow()
@@ -17,7 +22,9 @@ class HomeViewModel : ViewModel() {
     fun getSearchResult(key: String, searchKeyword: String) {
         viewModelScope.launch {
             try {
-                _searchFlow.emit(NaverSearchApi.naverSearchApi.runSearch(key, searchKeyword, 20, null))
+                _searchFlow.emit(
+                    naverSearchRepository.runSearch(key, searchKeyword, 20, null)
+                )
             } catch (e: Exception) {
                 Log.e("hoon92", "err = $e")
             }

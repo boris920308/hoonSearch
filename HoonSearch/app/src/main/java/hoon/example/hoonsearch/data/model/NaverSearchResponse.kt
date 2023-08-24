@@ -1,4 +1,4 @@
-package hoon.example.hoonsearch.network
+package hoon.example.hoonsearch.data.model
 
 import com.google.gson.annotations.SerializedName
 
