@@ -1,4 +1,4 @@
-package hoon.example.hoonsearch
+package hoon.example.hoonsearch.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

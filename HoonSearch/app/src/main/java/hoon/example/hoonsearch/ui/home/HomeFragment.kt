@@ -1,4 +1,4 @@
-package hoon.example.hoonsearch
+package hoon.example.hoonsearch.ui.home
 
 import android.os.Bundle
 import android.util.Log
