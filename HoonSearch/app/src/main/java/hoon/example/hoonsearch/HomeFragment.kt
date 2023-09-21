@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btn.setOnClickListener {
             Log.d("hoon92", "click btn ")
-            viewModel.getSearchResult("book", "kotlin")
+            viewModel.getSearchResult("book", binding.etInput.text.toString())
         }
 
         lifecycleScope.launch {
